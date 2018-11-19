@@ -28,7 +28,12 @@ export class CommentaryComponent implements OnInit {
   }
 
   deleteCommentaryForTopic(id: string) {
-    this.commentaryService.deleteCommentaryForTopic(this.commentary.topicId, id).subscribe(() => this.event.emit() );
+    this.commentaryService.deleteCommentaryForTopic(this.commentary.topicId, id).subscribe(() => {
+      this.event.emit();
+      this.snackBar.open('Commentary has been deleted!', 'Thumbs up!', {
+        duration: 3000
+      });
+    });
   }
 
   updateApproval(id: string) {

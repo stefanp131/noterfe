@@ -33,7 +33,12 @@ componentRef: ComponentRef<EditTopicSheetComponent>;
   }
 
   deleteTopic(id: string) {
-    this.ourSpaceService.deleteTopic(id).subscribe(() => this.event.emit());
+    this.ourSpaceService.deleteTopic(id).subscribe(() => {
+      this.event.emit();
+      this.snackBar.open('Topic has been deleted!', 'Thumbs up!', {
+        duration: 3000
+       });
+    });
   }
 
   showEditTopic() {
