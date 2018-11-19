@@ -1,0 +1,38 @@
+.opaque{
+    opacity: 0.8;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+  
+.example-full-width {
+    width: 100%;
+}
+
+.content{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.centered-items {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+.page-button {
+    display: inline-block
+}
+
+.dropdown {
+    width: 40px;
+}
+
+.mat-select-content{
+    width:40px;
+}

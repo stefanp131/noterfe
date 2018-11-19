@@ -1,0 +1,22 @@
+<mat-card >
+  <mat-card-title><span matBadge={{topic.approval}} matBadgeColor="primary">{{topic.title}}</span></mat-card-title>
+  <mat-card-subtitle><h3>{{topic.description}}</h3></mat-card-subtitle>
+  <mat-card-content>
+          <div class="content centered-items">
+                  <mat-chip-list>        
+                          <mat-chip class="link" [routerLink]="['/topic',topic.id]" matTooltip="No. of commentaries" color=accent> {{topic.commentariesCount}} commentaries </mat-chip>
+                  </mat-chip-list>
+                  &nbsp;&nbsp;
+          <button matTooltip="Edit Topic" mat-fab color=accent (click)="showEditTopic()"><mat-icon>edit</mat-icon></button>
+          &nbsp;&nbsp;
+          <button matTooltip="Upvote Topic" mat-fab color=accent (click)="updateApproval(topic.id)"><mat-icon>thumb_up</mat-icon></button>
+          &nbsp;&nbsp;          
+          <button matTooltip="Delete Topic" mat-fab color=warn (click)="deleteTopic(topic.id)"><i class="material-icons md-18">delete</i></button>
+          </div>
+          <div #container>
+                
+          </div>
+  </mat-card-content>
+          
+</mat-card>
+<br>

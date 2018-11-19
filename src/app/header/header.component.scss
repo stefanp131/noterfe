@@ -1,28 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
-
-.bg {
-  background-image: url("./assets/stripes.jpg");
-  background-position: center center;
-
-  background-repeat: no-repeat;
-
-  background-attachment: fixed;
-
-  background-size: cover;
-
-  background-color: #464646;
-
-  min-height: 1200px;
+.tab-toolbar{
+    top: 0;
+    position:sticky;
+    justify-content: space-between;
+    z-index: 999;
 }
 
-@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+.logo {
+    text-align: left;
+  }
 
-@import url("https://fonts.googleapis.com/css?family=Neucha");
+  
+.account {
+    text-align: right;    
+  }
+
+.tabs {
+    text-align: center;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Bowlby+One+SC");
 @import '~@angular/material/theming';
 
 
 $custom-typography: mat-typography-config(
-  $font-family: 'Neucha, cursive',
+  $font-family: 'Bowlby One SC, cursive',
   $headline: mat-typography-level(32px, 48px, 700),
   $body-1: mat-typography-level(16px, 24px, 500)
 );

@@ -1,0 +1,24 @@
+
+
+<mat-toolbar mat-typography class="tab-toolbar">
+  <div class="logo"><span>Noter</span></div>
+  <nav class="tabs" mat-tab-nav-bar>
+      <a mat-tab-link
+      *ngFor="let link of navLinks"
+      [routerLink]="link.path"
+      routerLinkActive #rla="routerLinkActive"
+      [active]="rla.isActive">
+     {{link.label}}
+   </a>
+  </nav>
+
+  <div class="account">
+    <span>{{getUserName()}}</span>
+    &nbsp;&nbsp;
+    <button mat-raised-button [routerLink]="['/login']" color=primary>Login</button>
+    &nbsp;&nbsp;
+    <button mat-raised-button [disabled]="isNotAuthenticated()" (click)="logout()" color=primary>Logout</button>
+    &nbsp;&nbsp;
+    <button mat-raised-button color=primary [routerLink]="['/register']">Register</button>
+  </div>
+</mat-toolbar>

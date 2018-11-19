@@ -1,0 +1,68 @@
+<br>
+<mat-toolbar>
+                <div>
+                        <mat-chip-list  class="page-button">        
+                                <mat-chip>Page {{pagination.currentPage}} of {{pagination.totalPages}}</mat-chip>
+                                <mat-chip>Total : {{pagination.totalCount}}</mat-chip>         
+                                <mat-chip>Page Size&nbsp;
+                                        <mat-select class="dropdown" [(ngModel)]="selected" (selectionChange)="getCommentaries()">
+                                                <mat-option [value]="5">5</mat-option>
+                                                <mat-option [value]="10">10</mat-option>
+                                                <mat-option [value]="15">15</mat-option>
+                                        </mat-select>
+                                </mat-chip>
+                        </mat-chip-list>   
+                </div>
+        </mat-toolbar>
+<br>
+
+<mat-card >
+        <mat-card-title>
+                <ng-container *ngIf="commentariesExist(); then Commentaries; else NoCommentaries">
+              </ng-container>
+        </mat-card-title>
+<br>
+<mat-expansion-panel>
+<mat-expansion-panel-header>    
+    Leave your commentary
+</mat-expansion-panel-header>
+<form class="example-form">
+        <mat-form-field class="example-full-width">
+                <input matInput [(ngModel)]="commentary.title" name="title" placeholder="Title">
+        </mat-form-field>                
+        <mat-form-field class="example-full-width">
+                <textarea rows="4" [(ngModel)]="commentary.content" name="content" class="textarea" matInput placeholder="Content"></textarea>
+        </mat-form-field>
+    <button mat-raised-button color=primary (click)="createCommentaryForTopic()">Comment</button>
+    </form>
+</mat-expansion-panel>
+<br>
+
+
+
+<div *ngFor="let commentary of commentaries">
+<app-commentary [commentary]="commentary" (event)="refreshData()" [page]="'our-space'"></app-commentary>
+<br>
+</div>
+
+<div class="content">
+        <button mat-raised-button [disabled]="isDisabled(pagination.previousPage)" color=primary (click)="getCommentariesFromUrl(pagination.previousPage)">Previous Page</button>
+        <button mat-raised-button [disabled]="isDisabled(pagination.nextPage)" color=primary (click)="getCommentariesFromUrl(pagination.nextPage)">Next Page</button>
+</div>
+</mat-card>
+
+
+<ng-template #Commentaries>
+        <div>
+          {{topic.title}}
+        </div>
+</ng-template>
+<ng-template #NoCommentaries>
+        <div>
+          Please friend, create a commentary
+        </div>
+</ng-template>
+
+<ng-template #EditCommentary>
+        
+</ng-template>

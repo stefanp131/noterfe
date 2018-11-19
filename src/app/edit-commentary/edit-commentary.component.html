@@ -1,0 +1,13 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+            <input readonly matInput [(ngModel)]="commentary.title" name="title" placeholder="Title">
+    </mat-form-field>                
+    <mat-form-field class="example-full-width">
+            <textarea rows="4" [(ngModel)]="commentary.content" name="content" class="textarea" matInput placeholder="Content"></textarea>
+    </mat-form-field>
+<button mat-raised-button color=primary (click)="editCommentary(commentary.id)"><span *ngIf="page === 'my-space'; else Comment">Post</span></button>
+</form>
+
+<ng-template #Comment>
+        <span>Comment</span>
+</ng-template>

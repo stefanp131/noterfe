@@ -1,0 +1,92 @@
+<div>
+<br>
+
+<mat-card>
+        <mat-card-title>About this application</mat-card-title>
+        <mat-card-content><h3>This applications is a reddit wannabe or a facebook just-by-text wannabe. It behaves just like a forum. 
+                You have your personal space which is MySpace, and the shared content which is OurSpace.
+                To start, create your own topic, add a description and wait for the others to add commentaries.
+                In the commentary section make sure to upvote the best commentary.
+        </h3>
+        </mat-card-content>
+</mat-card>
+<br>
+<mat-expansion-panel class="example-form centered">
+        <mat-expansion-panel-header >
+                <mat-panel-title>
+                        Create topic
+                </mat-panel-title>
+        </mat-expansion-panel-header>
+        <form class="example-form">
+                <mat-form-field class="example-full-width">
+                        <input matInput [(ngModel)]="topic.title" name="title" placeholder="Title">
+                </mat-form-field>                
+                <mat-form-field class="example-full-width">
+                        <textarea rows="4" [(ngModel)]="topic.description" name="description" class="textarea" matInput placeholder="Description"></textarea>
+                </mat-form-field>
+                <button mat-raised-button color=primary (click)="createTopic()">Create Topic</button>
+        </form>
+</mat-expansion-panel>
+<br>
+<br>
+<mat-toolbar>
+        <mat-toolbar-row>
+                        <mat-chip-list>        
+                        <mat-chip>Page {{pagination.currentPage}} of {{pagination.totalPages}}</mat-chip>
+                        <mat-chip>Total : {{pagination.totalCount}}</mat-chip>         
+                        <mat-chip>Page Size&nbsp;<mat-select class="dropdown" [(ngModel)]="selected" (selectionChange)="getTopics()">
+                                <mat-option [value]="8">8</mat-option>
+                                <mat-option [value]="16">16</mat-option>
+                                <mat-option [value]="32">32</mat-option>
+                                </mat-select></mat-chip>
+                        </mat-chip-list>
+                        &nbsp;&nbsp;
+                                <mat-button-toggle-group name="listStyle" aria-label="List Style" [(ngModel)]="pageStyle">
+                                        <mat-button-toggle value="list" matTooltip="Detailed View"><mat-icon >list</mat-icon></mat-button-toggle>
+                                        <mat-button-toggle value="grid" matTooltip="Simple View"><mat-icon>grid_on</mat-icon></mat-button-toggle>
+
+                                </mat-button-toggle-group>
+                                &nbsp;&nbsp;
+                        <button mat-raised-button  color=primary [disabled]="isDisabled(pagination.previousPage)" (click)="getTopicsFromUrl(pagination.previousPage)">Previous page</button>
+                        &nbsp;&nbsp;
+                        <button mat-raised-button  color=primary [disabled]="isDisabled(pagination.nextPage)" (click)="getTopicsFromUrl(pagination.nextPage)">Next Page</button>        
+                        &nbsp;&nbsp;
+
+                                <div class="search-form">
+                                <form >
+                                        <mat-form-field class="search-full-width">
+                                                <input matInput [(ngModel)]="searchTitle" name="searchTitle">
+                                        </mat-form-field>
+                                        &nbsp;&nbsp;
+                                        <button mat-raised-button color=primary (click)="searchByTitle()">Search</button>
+                                </form>
+                        </div>                                
+        </mat-toolbar-row>
+</mat-toolbar>
+<br>
+<mat-card class="centered">
+    <mat-card-title>Topics</mat-card-title>
+    <mat-card-subtitle>These are the topics our community shares:</mat-card-subtitle>
+    <br>    
+        <div *ngIf="pageStyleBehaviour(); else List">
+        <mat-expansion-panel class="topic" *ngFor="let topic of topics">
+                <mat-expansion-panel-header>                             
+                        <div matTooltip="{{topic.title + '\n\n' + topic.description}}">{{topic.title}}</div>
+                </mat-expansion-panel-header>
+                <div class="description">
+                {{topic.description}}                        
+                </div>
+                <br>
+                <div class="content centered-items">
+                        <a mat-fab [routerLink]="['/topic',topic.id]" color=primary>Open</a>&nbsp;&nbsp;&nbsp;&nbsp;<button mat-fab color=warn (click)="deleteTopic(topic.id)"><i class="material-icons md-18">delete</i></button>
+                </div>
+        </mat-expansion-panel> 
+        </div>
+</mat-card>
+</div>
+
+<ng-template #List>
+        <div *ngFor="let topic of topics">
+                <app-edit-topic [topic]="topic" (event)="refreshData()"></app-edit-topic>
+        </div>
+</ng-template>

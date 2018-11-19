@@ -1,0 +1,20 @@
+<mat-card>
+    <mat-card-title><span matBadge={{commentary.approval}} matBadgeColor="primary">{{commentary.title}}</span></mat-card-title>
+    <h3>{{commentary.content}}</h3>
+        <div class="content centered-items">
+                        <mat-chip-list>        
+                                <mat-chip matTooltip="Date Created"> {{commentary.created}} </mat-chip>
+                        </mat-chip-list>
+                        &nbsp;&nbsp;
+                <button matTooltip="Edit commentary" mat-fab color=accent (click)="showEditCommentary()"><i class="material-icons md-18">edit</i></button>
+                        &nbsp;&nbsp;
+                <button matTooltip="Upvote commentary" mat-fab color=accent (click)="updateApproval(commentary.id)"><i class="material-icons md-18">thumb_up</i></button>
+                &nbsp;&nbsp;
+                <button matTooltip="Delete commentary" mat-fab color=warn (click)="deleteCommentaryForTopic(commentary.id)"><i class="material-icons md-18">delete</i></button>
+
+                        
+        </div>
+        <div #container>
+                
+        </div>
+</mat-card>

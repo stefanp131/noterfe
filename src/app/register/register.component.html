@@ -1,0 +1,20 @@
+<br>
+<mat-card class="example-form" style="margin:auto;">
+  <mat-card-title>Register</mat-card-title>
+    <form class="example-form">
+      <mat-form-field class="example-full-width">
+              <input matInput [(ngModel)]="registerModel.userName" name="userName" placeholder="UserName">
+      </mat-form-field>                
+      <mat-form-field class="example-full-width">
+              <input type="password" [(ngModel)]="registerModel.password" name="password" matInput placeholder="Password">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+          <input type="password" [(ngModel)]="registerModel.confirmPassword" name="confirmPassword" matInput placeholder="Confirm Password">
+        </mat-form-field>
+        <br>
+      <span [hidden]="confirmPassword()" style="color:red">Password must match Confirm Password</span>
+      <span [hidden]="hasNotError" style="color:red" *ngFor="let err of error.error">{{err}}<br></span>
+      <br>
+      <button mat-raised-button color=primary (click)="register()">Register</button>
+    </form>
+</mat-card>
